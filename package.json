@@ -4,8 +4,8 @@
   "description": "",
   "main": "build/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart":"tsc && cp -r views build/views && cd client && npm run build",
+    "test": "node build/server.js",
+    "prestart": "tsc && cd client && npm run build",
     "start": "node build/server.js"
   },
   "author": "",
@@ -18,7 +18,8 @@
     "express-session": "^1.16.2",
     "mongoose": "^5.6.9",
     "passport": "^0.4.0",
-    "passport-github2": "^0.1.11"
+    "passport-github2": "^0.1.11",
+    "passport-spotify": "^1.1.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

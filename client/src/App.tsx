@@ -8,7 +8,7 @@ import axios from 'axios'
 
 export interface IUser {
   _id?: string;
-  githubId: number;
+  spotifyId: string;
 
 }
 
@@ -25,7 +25,7 @@ const App: React.FC = () => {
   useEffect( () => {
     console.log('firing data fetch')
     if (Object.keys(user).length) {
-      axios.get(`/api/${user.githubId}/repos`)
+      axios.get(`/api/${user.spotifyId}/repos`)
       .then((res) => {
         setRepos(res.data)
       })
@@ -34,7 +34,7 @@ const App: React.FC = () => {
 
   function handleLogin(e: React.MouseEvent): void {
     e.preventDefault()
-    var message: Promise<IUser> = openNewAuthWindow('/auth/github')
+    var message: Promise<IUser> = openNewAuthWindow('/auth/spotify')
     message.then(res => {
       setUser(res)
     }).catch(err => {
@@ -42,14 +42,14 @@ const App: React.FC = () => {
     })
   }
 
-  var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p>{user.githubId}</p>
+  var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p>{user.spotifyId}</p>
   var repoData = repos.map((repo, id) => {
     return <p>{repo.name}</p>
   })
 
   return (
     <div className="App">
-      <a onClick={handleLogin} href="/auth/github">Login to Github</a>
+      <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
       {userData}
       {repoData}
     </div>

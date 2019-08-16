@@ -3,15 +3,16 @@ const router = express.Router();
 import passport from '../config/ppConfig';
 
 // GET /auth/github - displays the GH login page
-router.get('/github', passport.authenticate('github'));
+router.get('/spotify', passport.authenticate('spotify'));
 
 // GET /auth/github/callback - callback URL that receives the token
-router.get('/github/callback', 
-    passport.authenticate('github', {failureRedirect: '/auth/login'}),
+router.get('/spotify/callback', 
+    passport.authenticate('spotify', {failureRedirect: '/auth/login'}),
     (req, res) => {
         //Successful authentication
-        console.log("This is the GitHub user:", req.user);
+        console.log("This is the Spotify user:", req.user);
         res.render('success', {user: req.user});
     });
+
 
     export default router;
